@@ -1,5 +1,5 @@
 import numpy as np
-from tensorflow.keras.applications.mobilenet_v2 import MobileNetV2, preprocess_input, decode_predictions
+from tensorflow import MobileNetV2, preprocess_input, decode_predictions
 from utils.image_utils import load_and_preprocess_image
 
 model = MobileNetV2(weights='imagenet')

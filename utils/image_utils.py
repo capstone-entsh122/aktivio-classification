@@ -1,6 +1,6 @@
 import numpy as np
-from tensorflow.keras.preprocessing import image
-from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
+from tensorflow import image
+from tensorflow import preprocess_input
 
 def load_and_preprocess_image(img_file, target_size=(224, 224)):
     img = image.load_img(img_file, target_size=target_size)
