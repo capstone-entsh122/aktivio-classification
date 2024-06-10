@@ -1,0 +1,5 @@
+flask
+google-generative-ai
+tensorflow
+numpy
+pillow
