@@ -11,7 +11,7 @@ steps:
       [
         'run',
         'deploy',
-        '$REPO_NAME',
+        'aktivio-flask',
         '--image',
         'gcr.io/aktivio-development/aktivio-flask:$COMMIT_SHA',
         '--region',
