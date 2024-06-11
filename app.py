@@ -12,7 +12,7 @@ from utils.image_utils import prep_image, prep_image_cnn
 app = Flask(__name__)
 
 # Load model CNN
-model_path = os.path.join(os.getcwd(), "aktivio9986")
+model_path = os.path.join(os.getcwd(), "aktivio9986.h5")
 cnn_model = tf.keras.models.load_model(model_path)
 
 # Set API Key
