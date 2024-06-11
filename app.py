@@ -49,7 +49,7 @@ def predict():
     mime_type, _ = mimetypes.guess_type(uploaded_file.filename)
     
      # Preprocess the image for Gemini AI model
-    with uploaded_file as f:
+    with uploaded_file.stream as f:
         image_data = prep_image(f, mime_type)
 
     # Prompt Template
