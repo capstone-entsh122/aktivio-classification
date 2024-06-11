@@ -63,7 +63,7 @@ def predict():
     """
 
     # Get the nutrition response
-    response = get_response_nutrition(image_bytes, input_prompt_nutrition)
+    response = get_response_nutrition(image_bytes, input_prompt_nutrition, mime_type)
     return jsonify({"class_label": class_label, "nutrition_response": response})
 
 if __name__ == '__main__':
