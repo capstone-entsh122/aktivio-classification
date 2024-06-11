@@ -1,19 +1,25 @@
+import base64
 from PIL import Image
 import numpy as np
 import io
 
 def prep_image(uploaded_file):
     if uploaded_file is not None:
-        # Read the file as bytes
-        if isinstance(uploaded_file, io.BytesIO):
-            bytes_data = uploaded_file.getvalue()
-        else:
-            bytes_data = uploaded_file.read()
-        
+        # Open the image using PIL
+        image = Image.open(uploaded_file)
+
+        # Convert the image to JPEG format
+        with io.BytesIO() as output:
+            image.convert('RGB').save(output, format='JPEG')
+            image_data = output.getvalue()
+
+        # Encode the image data as base64
+        base64_image = base64.b64encode(image_data).decode('utf-8')
+
         image_parts = [
             {
-                "mime_type": "image/jpeg",  # Assuming the uploaded file is always an image
-                "data": bytes_data
+                "mime_type": "image/jpeg",
+                "data": base64_image
             }
         ]
         return image_parts
