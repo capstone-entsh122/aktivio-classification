@@ -46,11 +46,10 @@ def predict():
     class_label = class_labels[class_idx]
 
     # Determine the MIME type of the file
-    mime_type, _ = mimetypes.guess_type(uploaded_file.filename)
+    # mime_type, _ = mimetypes.guess_type(uploaded_file.filename)
     
      # Preprocess the image for Gemini AI model
-    with uploaded_file.stream as f:
-        image_data = prep_image(f, mime_type)
+    image_data = prep_image(uploaded_file)
 
     # Prompt Template
     input_prompt_nutrition = f"""
@@ -63,7 +62,7 @@ def predict():
     """
 
     # Get the nutrition response
-    response = get_response_nutrition(image_data, input_prompt_nutrition)
+    response = get_response_nutrition(image_data, input_prompt_nutrition)   
 
     return jsonify({"class_label": class_label, "nutrition_response": response})
 
