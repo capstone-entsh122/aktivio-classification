@@ -6,7 +6,7 @@ def get_response_nutrition(image, prompt):
         model = genai.GenerativeModel('gemini-pro-vision')
         instances = [
             {
-                "image": {"data": base64.b64encode(image).decode('utf-8')},
+                "image": {"data": base64.b64encode(image.read()).decode('utf-8')},
                 "prompt": prompt
             }
         ]
