@@ -8,7 +8,7 @@ from PIL import Image
 
 from models.gemini_ai import get_response_nutrition
 from utils.image_utils import prep_image, prep_image_cnn
-
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1" 
 app = Flask(__name__)
 
 # Load model CNN
