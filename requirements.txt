@@ -1,5 +1,5 @@
 flask
-google-generative-ai
+google-generativeai
 tensorflow
 numpy
 pillow

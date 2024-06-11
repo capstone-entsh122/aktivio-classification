@@ -1,4 +1,5 @@
 import os
+import google.generativeai as genai
 import tensorflow as tf
 import mimetypes
 from flask import Flask, request, jsonify
@@ -11,11 +12,13 @@ from utils.image_utils import prep_image, prep_image_cnn
 app = Flask(__name__)
 
 # Load model CNN
-model_path = "./aktivio9986"
+model_path = os.path.join(os.getcwd(), "aktivio9986")
 cnn_model = tf.keras.models.load_model(model_path)
 
 # Set API Key
-GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY")
+# GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY")
+os.environ["GOOGLE_API_KEY"] = "AIzaSyBSlPzxVot-SwXlFevsUAnq53S58yjojUM"
+genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 
 @app.route('/api/classify', methods=['POST'])
 def predict():
