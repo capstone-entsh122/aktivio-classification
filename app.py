@@ -16,14 +16,13 @@ model_path = "aktivio9986.h5"
 cnn_model = tf.keras.models.load_model(model_path)
 
 # Set API Key
-GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY")
-# os.environ["GOOGLE_API_KEY"] = "AIzaSyBSlPzxVot-SwXlFevsUAnq53S58yjojUM"
+# GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY")
+os.environ["GOOGLE_API_KEY"] = "AIzaSyBSlPzxVot-SwXlFevsUAnq53S58yjojUM"
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 
 @app.route('/api/classify', methods=['POST'])
 def predict():
-    if not GOOGLE_API_KEY:
-        return jsonify({"error": "GOOGLE_API_KEY environment variable is not set."}), 400
+   
     # Get the uploaded file
     uploaded_file = request.files['image']
 
