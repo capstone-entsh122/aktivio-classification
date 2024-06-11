@@ -50,7 +50,7 @@ def predict():
     
      # Preprocess the image for Gemini AI model
     with uploaded_file.stream as f:
-        image_data = prep_image(f, mime_type)
+        image_bytes = f.read()
 
     # Prompt Template
     input_prompt_nutrition = f"""
@@ -63,8 +63,7 @@ def predict():
     """
 
     # Get the nutrition response
-    response = get_response_nutrition(image_data, input_prompt_nutrition)
-
+    response = get_response_nutrition(image_bytes, input_prompt_nutrition)
     return jsonify({"class_label": class_label, "nutrition_response": response})
 
 if __name__ == '__main__':

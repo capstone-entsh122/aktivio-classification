@@ -1,12 +1,13 @@
 import base64
 import google.generativeai as genai
 
-def get_response_nutrition(image, prompt):
+
+def get_response_nutrition(image_bytes, prompt):
     try:
         model = genai.GenerativeModel('gemini-pro-vision')
         instances = [
             {
-                "image": {"data": base64.b64encode(image).decode('utf-8')},
+                "image": {"data": base64.b64encode(image_bytes).decode('utf-8')},
                 "prompt": prompt
             }
         ]
