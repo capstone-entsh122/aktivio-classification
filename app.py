@@ -5,6 +5,7 @@ import mimetypes
 from flask import Flask, request, jsonify
 import numpy as np
 from PIL import Image
+import json
 
 from models.gemini_ai import get_response_nutrition
 from utils.image_utils import prep_image, prep_image_cnn
@@ -56,14 +57,17 @@ def predict():
     Gambar ini memperlihatkan {class_label}.
     Silakan berikan rincian dari jenis makanan yang ada dalam {class_label} beserta kandungan gizinya.
     Berikut kata yang harus ditampilkan :
-    Makanan, Ukuran porsi, Kalori, Protein (g), Lemak,Karbohidrat (g), Serat (g)
+    Ukuran porsi, Kalori, Protein, Lemak, Karbohidrat, Serat
     tampilkan dalam bentuk raw string JSON
     """
 
     # Get the nutrition response
-    response = get_response_nutrition(image_data, input_prompt_nutrition)   
+    response = get_response_nutrition(image_data, input_prompt_nutrition)
+    
+    cleaned_response = json.loads(response.replace("\n", "").replace('"', '\\"'))
+       
 
-    return jsonify({"class_label": class_label, "nutrition_response": response})
+    return jsonify({"class_label": class_label, "nutrition_response": cleaned_response})
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080)
