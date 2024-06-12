@@ -57,7 +57,7 @@ def predict():
     Silakan berikan rincian dari jenis makanan yang ada dalam {class_label} beserta kandungan gizinya.
     Berikut kata yang harus ditampilkan :
     Makanan, Ukuran porsi, Kalori, Protein (g), Lemak,Karbohidrat (g), Serat (g)
-    tampilkan dalam bentuk string JSON
+    tampilkan dalam bentuk raw string JSON
     """
 
     # Get the nutrition response
