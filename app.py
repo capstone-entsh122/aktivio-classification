@@ -6,6 +6,7 @@ from flask import Flask, request, jsonify
 import numpy as np
 from PIL import Image
 import json
+import re
 
 from models.gemini_ai import get_response_nutrition
 from utils.image_utils import prep_image, prep_image_cnn
@@ -63,9 +64,16 @@ def predict():
 
     # Get the nutrition response
     response = get_response_nutrition(image_data, input_prompt_nutrition)
+    
+    # Clean the nutrition_response string
+    cleaned_response = re.sub(r'\n|\s+', ' ', response['nutrition_response']).strip()
+    
+    # Parse the cleaned response into a JSON object
+    nutrition_data = json.loads(cleaned_response)
+
        
 
-    return jsonify({"class_label": class_label, "nutrition_response": response})
+    return jsonify({"class_label": class_label, "nutrition_response": nutrition_data})
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080)
