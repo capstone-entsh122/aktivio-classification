@@ -65,8 +65,11 @@ def predict():
     # Get the nutrition response
     response = get_response_nutrition(image_data, input_prompt_nutrition)
     
+    # Parse the response string as JSON
+    response_json = json.loads(response)
+    
     # Clean the nutrition_response string
-    cleaned_response = re.sub(r'\n|\s+', ' ', response['nutrition_response']).strip()
+    cleaned_response = re.sub(r'\n|\s+', ' ', response_json['nutrition_response']).strip()
     
     # Parse the cleaned response into a JSON object
     nutrition_data = json.loads(cleaned_response)
