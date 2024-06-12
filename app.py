@@ -63,11 +63,9 @@ def predict():
 
     # Get the nutrition response
     response = get_response_nutrition(image_data, input_prompt_nutrition)
-    
-    cleaned_response = json.loads(response.replace("\n", "").replace('"', '\\"'))
        
 
-    return jsonify({"class_label": class_label, "nutrition_response": cleaned_response})
+    return jsonify({"class_label": class_label, "nutrition_response": response})
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080)
