@@ -17,7 +17,7 @@ cnn_model = tf.keras.models.load_model(model_path)
 
 # Set API Key
 # GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY")
-os.environ["GOOGLE_API_KEY"] = "AIzaSyBSlPzxVot-SwXlFevsUAnq53S58yjojUM"
+os.environ["GOOGLE_API_KEY"] = "AIzaSyB8Fr5JMcNRcq_3fweQGDw_8Lb7BX1cVnY"
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 
 @app.route('/api/classify', methods=['POST'])
