@@ -15,7 +15,7 @@ def get_response_nutrition(image_data, prompt):
 
         # Rename the "Ukuran porsi" property to "porsi"
         if "Ukuran porsi" in nutrition_data:
-            nutrition_data["porsi"] = nutrition_data.pop("Ukuran porsi")
+            nutrition_data["Porsi"] = nutrition_data.pop("Ukuran porsi")
 
         return nutrition_data
     except Exception as e:
